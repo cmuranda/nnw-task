@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class Address {
     long id;
 
-    @NotNull(message = "Address 1 cannot be empty")
+    @NotNull(message = "Address Detail cannot be empty")
     AddressLineDetail addressLineDetail;
     AddressType type;
     ProvinceOrState provinceOrState;
@@ -21,7 +21,7 @@ public class Address {
     @NotNull(message = "Country cannot be empty")
     Country country;
 
-    @Pattern(regexp = "\\d")
+    @Pattern(regexp = "\\d+", message = "Postal code must be numerical")
     String postalCode;
 
     String suburbOrDistrict;

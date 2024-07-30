@@ -6,9 +6,10 @@ import nnw.task.model.Country;
 import nnw.task.model.ProvinceOrState;
 
 public class PrettyPrint implements AddressPrinter{
-    StringBuilder builder = new StringBuilder();
+    StringBuilder builder;
     @Override
     public String print(Address address) {
+         builder = new StringBuilder();
         appendAddressDetail(address.getAddressLineDetail());
         appendCity(address.getCityOrTown());
         appendProvinceOrState(address.getProvinceOrState());
@@ -24,11 +25,14 @@ public class PrettyPrint implements AddressPrinter{
     }
 
     private void appendAddressDetail(AddressLineDetail detail){
-        if(detail.getLine1() != null){
+        if (detail == null){
+            return;
+        }
+        if(detail.getLine1() != null && !detail.getLine1().isBlank()){
             String line1 = detail.getLine1();
             appendItem(line1.strip());
         }
-        if (detail.getLine2() != null || detail.getLine2().isBlank()){
+        if (detail.getLine2() != null && !detail.getLine2().isBlank()){
             String line2 = detail.getLine2();
             appendItem(line2.strip());
         }
